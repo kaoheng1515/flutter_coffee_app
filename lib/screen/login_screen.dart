@@ -24,8 +24,8 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             Text(
-              'Login to ',
-              style: TextStyle(fontSize: 24),
+              'Login to coffee application and order \n all things who you need !!! ',
+              style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
             Align(
@@ -56,11 +56,33 @@ class LoginScreen extends StatelessWidget {
             ),
             TextField(
               decoration: InputDecoration(
-                labelText: '***********',
+                labelText: '',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
                   borderSide: BorderSide(color: Colors.grey),
                 ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: Text(
+                      'Forgot Password',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 0),
+                    child: Text(
+                      'Privacy Policy',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 20),

@@ -23,7 +23,8 @@ class WelcomeScreen extends StatelessWidget {
               width: double.infinity, // Specify width for the container
               height: 410, // Specify height for the container
               decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.7)
+                  color: Colors.green.withOpacity(0.95),
+
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -48,8 +49,18 @@ class WelcomeScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
+                      // Handle login
                     },
-                    child: Text('Get Start', style: TextStyle(fontSize: 20)),
+                    style: ElevatedButton.styleFrom(
+                      // Text color
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 80.0), // Padding
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                      ),
+                      elevation: 5, // Shadow elevation
+                    ),
+                    child: Text('Get Start'),
                   ),
                 ],
               ),
