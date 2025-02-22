@@ -64,6 +64,10 @@ flutter:
     - assets/images/images.jfif
     - assets/images/images.jfif
     - assets/images/images.jfif
+    - assets/images/poster.png
+    - assets/images/boy.png
+    - assets/images/user.png
+    - assets/images/cappuccino_classic.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
