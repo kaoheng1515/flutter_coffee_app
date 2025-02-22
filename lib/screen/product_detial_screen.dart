@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_app/widgets/bottom_nav_bar.dart';
+// import 'package:flutter_coffee_app/widgets/bottom_nav_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
