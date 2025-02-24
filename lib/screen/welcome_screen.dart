@@ -4,7 +4,6 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.green,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -15,18 +14,16 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 500),
             Container(
-              width: double.infinity, // Specify width for the container
-              height: 410, // Specify height for the container
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.7)
+                color: Colors.green.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
@@ -49,7 +46,7 @@ class WelcomeScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
                     },
-                    child: Text('Get Start', style: TextStyle(fontSize: 20)),
+                    child: Text('Get Started', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

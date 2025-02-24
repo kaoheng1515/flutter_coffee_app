@@ -64,6 +64,7 @@ flutter:
     - assets/images/images.jfif
     - assets/images/images.jfif
     - assets/images/images.jfif
+    - assets/images/amazon-pay.svg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
