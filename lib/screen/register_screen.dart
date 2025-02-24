@@ -18,7 +18,7 @@ class RegisterScreen extends StatelessWidget {
         color: Colors.white70,
         child: Column(
           children: [
-            SizedBox(height: 40),
+            SizedBox(height: 30),
             Text(
               'Register your account',
               style: TextStyle(fontSize: 24),
@@ -36,9 +36,9 @@ class RegisterScreen extends StatelessWidget {
                 labelText: 'First Name',
                 border: OutlineInputBorder(
                   borderRadius:
-                  BorderRadius.circular(12.0), // Set the border radius here
+                      BorderRadius.circular(12.0), // Set the border radius here
                   borderSide:
-                  BorderSide(color: Colors.grey), // Optional: border color
+                      BorderSide(color: Colors.grey), // Optional: border color
                 ),
               ),
             ),
@@ -55,13 +55,13 @@ class RegisterScreen extends StatelessWidget {
                 labelText: 'Last Name',
                 border: OutlineInputBorder(
                   borderRadius:
-                  BorderRadius.circular(12.0), // Set the border radius here
+                      BorderRadius.circular(12.0), // Set the border radius here
                   borderSide:
-                  BorderSide(color: Colors.grey), // Optional: border color
+                      BorderSide(color: Colors.grey), // Optional: border color
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -74,13 +74,13 @@ class RegisterScreen extends StatelessWidget {
                 labelText: 'Email',
                 border: OutlineInputBorder(
                   borderRadius:
-                  BorderRadius.circular(12.0), // Set the border radius here
+                      BorderRadius.circular(12.0), // Set the border radius here
                   borderSide:
-                  BorderSide(color: Colors.grey), // Optional: border color
+                      BorderSide(color: Colors.grey), // Optional: border color
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -97,7 +97,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -114,20 +114,34 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 2),
+            Container(
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 0),
+                    child: TextButton(onPressed: () {
+                      // Handle registration
+                    },
+                      child: Text('Looks nice'),)
+                  ),
+                ],
+              ),
+            ),
             ElevatedButton(
               onPressed: () {
                 // Handle registration
               },
               child: Text('Create Account'),
             ),
-            SizedBox(height: 100),
-            ElevatedButton(
+            SizedBox(height: 80),
+            TextButton(
               onPressed: () {
+                Navigator.pushNamed(context, '/login');
                 // Handle registration
               },
               child: Text('Already have an account'),
-            ),
+            )
           ],
         ),
       ),
