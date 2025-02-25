@@ -14,21 +14,21 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.all(80),
               decoration: BoxDecoration(
-                color: Colors.green.withOpacity(0.7),
-                borderRadius: BorderRadius.circular(10),
+                color: Colors.green.withOpacity(0.8),
+                // borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Get your new Coffee experience at',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   Text(

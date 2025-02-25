@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePageScreen> {
   final List<Map<String, dynamic>> products = [
     {
       'title': 'Cappuccino',
-      'image': 'assets/images/cappuccino_classic.jpg',  // Local path
+      'image': 'assets/images/cappuccino_classic.jpg', // Local path
       'price': 3.00,
       'rating': 4.8,
       'description': 'A cappuccino is a classic Italian coffee drink...',
@@ -37,12 +37,12 @@ class _HomePageState extends State<HomePageScreen> {
     },
     // Add other products here
 
-  // {
-  //     'title': 'Cappuccino Classic',
-  //     'image': 'https://via.placeholder.com/150',
-  //     'price': 3.00,
-  //     'rating': 4.8,
-  //   },
+    // {
+    //     'title': 'Cappuccino Classic',
+    //     'image': 'https://via.placeholder.com/150',
+    //     'price': 3.00,
+    //     'rating': 4.8,
+    //   },
     {
       'title': 'Cappuccino Chiaro',
       'image': 'https://via.placeholder.com/150',
@@ -68,7 +68,8 @@ class _HomePageState extends State<HomePageScreen> {
         actions: [
           IconButton(
             icon: const CircleAvatar(
-              backgroundImage: AssetImage('assets/images/user.png'), // Local asset image
+              backgroundImage:
+                  AssetImage('assets/images/user.png'), // Local asset image
             ),
             onPressed: () {},
           ),
@@ -257,8 +258,7 @@ class _HomePageState extends State<HomePageScreen> {
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        '/detail',
-                        arguments: product,
+                        '/product_detail',
                       );
                     },
                     child: Card(

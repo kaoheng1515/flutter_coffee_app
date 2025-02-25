@@ -24,12 +24,9 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             Text(
-<<<<<<< HEAD
               'Login to coffee application and order \n         all things who you need !!! ',
-=======
-              'Login to coffee application and order \n all things who you need !!! ',
               textAlign: TextAlign.center,
->>>>>>> 56a6a6feea96f7904c2dd91bbc3378ce54848263
+
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
