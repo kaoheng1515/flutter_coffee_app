@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class Payment extends StatefulWidget {
@@ -28,8 +29,12 @@ class _PaymentState extends State<Payment> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text("Payment Successful"),
-          content: Text("Your payment of \$20.50 has been processed successfully."),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Center(child: Text("🎉 Payment Successful🎉")),
+          content: Text(
+            "Your payment of \$20.50 has been processed successfully.",
+            textAlign: TextAlign.center,
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -38,6 +43,11 @@ class _PaymentState extends State<Payment> {
           ],
         ),
       );
+
+      // Auto-close the dialog after 3 seconds
+      Future.delayed(Duration(seconds: 5), () {
+        Navigator.pop(context);
+      });
     });
   }
 
@@ -82,7 +92,9 @@ class _PaymentState extends State<Payment> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+
       appBar: AppBar(
         title: Text("Payment Method"),
         backgroundColor: Colors.transparent,
@@ -96,10 +108,10 @@ class _PaymentState extends State<Payment> {
           child: Column(
             children: [
               SizedBox(height: 20),
-              buildPaymentOption(1, "Amazon Pay", Icons.payment),
-              buildPaymentOption(2, "ABA Bank", Icons.account_balance),
-              buildPaymentOption(3, "ACLEDA Bank", Icons.account_balance),
-              buildPaymentOption(4, "Credit Card", Icons.payment),
+              buildPaymentOption(1, "Bitcoin", Icons.currency_bitcoin_outlined),
+              buildPaymentOption(2, "ABA Bank", Icons.comment_bank,),
+              buildPaymentOption(3, "Acleda Bank", Icons.account_balance),
+              buildPaymentOption(4, "Credit Card", Icons.add_card),
               SizedBox(height: 30),
               _buildPriceSummary(),
               SizedBox(height: 30),
