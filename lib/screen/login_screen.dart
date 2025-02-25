@@ -24,97 +24,84 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             Text(
+<<<<<<< HEAD
               'Login to coffee application and order \n         all things who you need !!! ',
+=======
+              'Login to coffee application and order \n all things who you need !!! ',
+              textAlign: TextAlign.center,
+>>>>>>> 56a6a6feea96f7904c2dd91bbc3378ce54848263
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
+
+            // Email Field
             Align(
-              alignment: Alignment.centerLeft, // Aligns the text to the left
-              child: Text(
-                'Email',
-                style: TextStyle(fontSize: 14),
-              ),
+              alignment: Alignment.centerLeft,
+              child: Text('Email', style: TextStyle(fontSize: 14)),
             ),
             TextField(
               decoration: InputDecoration(
                 labelText: 'example@gmail.com',
                 border: OutlineInputBorder(
-                  borderRadius:
-                      BorderRadius.circular(12.0), // Set the border radius here
-                  borderSide:
-                      BorderSide(color: Colors.grey), // Optional: border color
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
               ),
             ),
             SizedBox(height: 20),
+
+            // Password Field
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                'Password',
-                style: TextStyle(fontSize: 14),
-              ),
+              child: Text('Password', style: TextStyle(fontSize: 14)),
             ),
             TextField(
+              obscureText: true, // Hide password input
               decoration: InputDecoration(
-                labelText: '',
+                labelText: 'Enter your password',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
-                  borderSide: BorderSide(color: Colors.grey),
                 ),
               ),
             ),
             SizedBox(height: 10),
-            Container(
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0),
-                    child: Text(
-                      'Forgot Password',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 0),
-                    child: Text(
-                      'Privacy Policy',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                  ),
-                ],
-              ),
+
+            // Forgot Password & Privacy Policy
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Forgot Password', style: TextStyle(fontSize: 14)),
+                Text('Privacy Policy', style: TextStyle(fontSize: 14)),
+              ],
             ),
             SizedBox(height: 20),
+
+            // Login Button
             ElevatedButton(
               onPressed: () {
-                // Handle login
+                Navigator.pushReplacementNamed(context, '/home');
               },
               style: ElevatedButton.styleFrom(
-                // Text color
-                padding: EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 100.0), // Padding
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 100.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                elevation: 5, // Shadow elevation
+                elevation: 5,
               ),
               child: Text('Login'),
             ),
             SizedBox(height: 20),
+
+            // Register Button
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
-                // Handle login
               },
               style: ElevatedButton.styleFrom(
-                // Text color
-                padding: EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 90.0), // Padding
+                padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 90.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0), // Rounded corners
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
-                elevation: 5, // Shadow elevation
+                elevation: 5,
               ),
               child: Text('Register'),
             ),

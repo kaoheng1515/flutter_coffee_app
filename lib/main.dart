@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_app/screen/login_screen.dart';
-import 'package:flutter_coffee_app/screen/register_screen.dart';
-import 'package:flutter_coffee_app/screen/welcome_screen.dart';
+import 'package:flutter_coffee_app/screen/payment.dart';
+
+import 'payment_screen/payment.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Coffee App',
-      initialRoute: '/',
-      routes: {
-        '/': (context) => WelcomeScreen(),
-        '/login': (context) => LoginScreen(),
-        '/register': (context) => RegisterScreen(),
-      },
+      home: Payment(), // Ensure Payment() is a valid widget
     );
   }
 }
