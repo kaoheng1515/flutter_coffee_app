@@ -20,11 +20,11 @@ class LoginScreen extends StatelessWidget {
           children: [
             SizedBox(height: 100),
             Text(
-              'Login to Coffee Application',
+              'Login',
               style: TextStyle(fontSize: 24),
             ),
             Text(
-              'Login to coffee application and order \n all things who you need !!! ',
+              'Login to coffee application and order \n         all things who you need !!! ',
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 20),
