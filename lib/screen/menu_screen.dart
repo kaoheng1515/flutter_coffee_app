@@ -8,20 +8,46 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  // Counter variable
-  int count = 10;
+  List<Map<String, dynamic>> menuItems = [
+    {
+      'name': 'Cappuccino',
+      'description': 'Bursting blueberry',
+      'price': '\$3.00',
+      'image': 'assets/images/cappuccino.png',
+      'count': 0,
+    },
+    {
+      'name': 'Iced Green Tea',
+      'description': 'Bursting blueberry',
+      'price': '\$2.00',
+      'image': 'assets/images/Iced Green Tea Latte.png',
+      'count': 0,
+    },
+    {
+      'name': 'Strawberry Frappe',
+      'description': 'Bursting blueberry',
+      'price': '\$3.00',
+      'image': 'assets/images/Strawberry_frap.png',
+      'count': 0,
+    },
+  ];
 
-  // Method to increment count
-  void increment() {
+  void increment(int index) {
     setState(() {
-      count++;
+      menuItems[index]['count']++;
     });
   }
 
-  // Method to decrement count
-  void decrement() {
+  void decrement(int index) {
     setState(() {
-      count--;
+      if (menuItems[index]['count'] > 0) {
+        menuItems[index]['count']--;
+      }
+    });
+  }
+  void removeItem(int index) {
+    setState(() {
+      menuItems.removeAt(index);
     });
   }
 
@@ -40,134 +66,145 @@ class _MenuScreenState extends State<MenuScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Add settings action
             },
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20.0),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 12.0),
-          padding: const EdgeInsets.all(0),
-          height: 90,
-          width: 400,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.5),
-                blurRadius: 1,
-                spreadRadius: 1,
-                offset: const Offset(0, 1),
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  "assets/images/cappuccino.png",
-                  height: 80,
-                  width: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  Text(
-                    "Cappuccino",
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+        child: ListView.builder(
+          itemCount: menuItems.length,
+          itemBuilder: (context, index) {
+            final item = menuItems[index];
+            return Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 12.0),
+                  padding: const EdgeInsets.all(0),
+                  height: 90,
+                  width: 400,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        blurRadius: 1,
+                        spreadRadius: 1,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Bursting blueberry",
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    "\$2.00",
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: decrement,
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Icon(
-                        Icons.remove,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.green),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '$count',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                        child: Image.asset(
+                          item['image'],
+                          height: 80,
+                          width: 80,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                  ),
-                  GestureDetector(
-                    onTap: increment,
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10),
+                      const SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 10),
+                          Text(
+                            item['name'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            item['description'],
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            item['price'],
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            onTap: () => decrement(index),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Icon(
+                                Icons.remove,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          ),
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.green),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '${item['count']}',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 5.0),
+                          ),
+                          GestureDetector(
+                            onTap: () => increment(index),
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                // Add space between items
+                const SizedBox(height: 20),
+              ],
+            );
+          },
         ),
       ),
     );
