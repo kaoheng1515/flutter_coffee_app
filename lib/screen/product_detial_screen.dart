@@ -9,9 +9,27 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   String selectedSize = 'M';
+  int quantity = 1;
+  double basePrice = 2.5;
+
+  void increaseQuantity() {
+    setState(() {
+      quantity++;
+    });
+  }
+
+  void decreaseQuantity() {
+    if (quantity > 1) {
+      setState(() {
+        quantity--;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    double totalPrice = basePrice * quantity;
+
     return Scaffold(
       backgroundColor: Colors.green.shade50,
       appBar: AppBar(
@@ -38,7 +56,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               // Coffee Image
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset('assets/images/img.png', width: double.infinity, height: 200, fit: BoxFit.cover),
+                child: Image.asset('assets/images/img.png',
+                    width: double.infinity, height: 200, fit: BoxFit.cover),
               ),
               const SizedBox(height: 16),
 
@@ -49,14 +68,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Cappuccino', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                      const Text('Cappuccino',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
                       const Text('Chiaro', style: TextStyle(color: Colors.grey)),
                     ],
                   ),
                   Row(
                     children: [
                       const Icon(Icons.star, color: Colors.orange, size: 20),
-                      const Text('5.0', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      const Text('5.0',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold)),
                       const Text(' (230)', style: TextStyle(color: Colors.grey)),
                     ],
                   ),
@@ -79,13 +102,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 onTap: () {},
                 child: const Text(
                   'Read More',
-                  style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                  style:
+                  TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 16),
 
               // Size Selection
-              const Text('Size', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const Text('Size',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -95,6 +120,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     onTap: () {
                       setState(() {
                         selectedSize = size;
+                        basePrice = size == 'S' ? 2.0 : size == 'M' ? 2.5 : 3.0;
                       });
                     },
                     child: Container(
@@ -106,10 +132,42 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(color: Colors.green),
                       ),
-                      child: Text(size, style: TextStyle(color: isSelected ? Colors.white : Colors.green, fontWeight: FontWeight.bold)),
+                      child: Text(size,
+                          style: TextStyle(
+                              color:
+                              isSelected ? Colors.white : Colors.green,
+                              fontWeight: FontWeight.bold)),
                     ),
                   );
                 }).toList(),
+              ),
+              const SizedBox(height: 16),
+
+              // Quantity Selector
+              const Text('Quantity',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        onPressed: decreaseQuantity,
+                        icon: const Icon(Icons.remove, color: Colors.green),
+                      ),
+                      Text(
+                        quantity.toString(),
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        onPressed: increaseQuantity,
+                        icon: const Icon(Icons.add, color: Colors.green),
+                      ),
+                    ],
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
 
@@ -120,10 +178,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Price', style: TextStyle(color: Colors.grey)),
+                      const Text('Total Price',
+                          style: TextStyle(color: Colors.grey)),
                       Text(
-                        '\$2.5',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green.shade700),
+                        '\$${totalPrice.toStringAsFixed(2)}',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green.shade700),
                       ),
                     ],
                   ),
@@ -133,10 +195,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 32, vertical: 12),
                     ),
-                    child: const Text('Buy Now', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    child: const Text('Buy Now',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
@@ -154,7 +220,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite_border), label: 'Favourite'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border), label: 'Favourite'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),

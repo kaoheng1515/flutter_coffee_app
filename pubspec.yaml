@@ -67,6 +67,7 @@ flutter:
     - assets/images/amazon-pay.svg
     - assets/images/poster.png
     - assets/images/img.png
+    - assets/images/user.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
