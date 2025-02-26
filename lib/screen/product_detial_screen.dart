@@ -36,8 +36,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       bottomNavigationBar: const BottomNavBar(currentIndex: 0),
       backgroundColor: Colors.green.shade50,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text(
+          'Detail',
+          style: TextStyle(
+              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.green,
-        title: const Text('Detail', style: TextStyle(color: Colors.white),),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
