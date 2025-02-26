@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePageScreen> {
           IconButton(
             icon: const CircleAvatar(
               backgroundImage:
-                  AssetImage('assets/images/user.png'), // Local asset image
+              AssetImage('assets/images/user.png'), // Local asset image
             ),
             onPressed: () {},
           ),
@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePageScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
                 separatorBuilder: (context, index) =>
-                    const SizedBox(width: 8.0),
+                const SizedBox(width: 8.0),
                 itemBuilder: (context, index) {
                   final category = categories[index];
                   final isSelected = category == selectedCategory;
@@ -296,7 +296,7 @@ class _HomePageState extends State<HomePageScreen> {
                           ),
                           Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
