@@ -34,19 +34,28 @@ class BottomNavBar extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.menu,
-              color: currentIndex == 1 ? Colors.green : Colors.grey, // Dynamic color based on selection
+            icon: GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/menu');
+              },
+              child: Icon(
+                Icons.menu,
+                color: currentIndex == 1 ? Colors.green : Colors.grey,
+              ),
             ),
             label: 'Menu',
           ),
+
+
           BottomNavigationBarItem(
             icon: Icon(
               Icons.favorite,
-              color: currentIndex == 2 ? Colors.green : Colors.grey, // Dynamic color based on selection
+              color: currentIndex == 2 ? Colors.green : Colors.grey,
             ),
             label: 'Favorite',
           ),
+
+
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person_2,
