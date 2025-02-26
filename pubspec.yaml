@@ -68,6 +68,9 @@ flutter:
     - assets/images/poster.png
     - assets/images/img.png
     - assets/images/user.png
+    - assets/images/orange_juice.png
+    - assets/images/Strawberry_frap_small.png
+    - assets/images/Ice_cream.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

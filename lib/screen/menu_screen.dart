@@ -350,3 +350,96 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 }
+// class OrderSummaryScreen extends StatelessWidget {
+//   final List<Map<String, dynamic>> menuItems;
+//   final double total;
+//
+//   const OrderSummaryScreen({
+//     Key? key,
+//     required this.menuItems,
+//     required this.total,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Order Summary"),
+//         backgroundColor: Colors.green,
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(20.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             const Text(
+//               "Your Order",
+//               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 20),
+//             // Display the items in the order
+//             ...menuItems
+//                 .where((item) => item['count'] > 0)
+//                 .map((item) {
+//               return ListTile(
+//                 title: Text(item['name']),
+//                 subtitle: Text("Quantity: ${item['count']}"),
+//                 trailing: Text(
+//                     '\$${(item['price'] * item['count']).toStringAsFixed(2)}'),
+//               );
+//             }).toList(),
+//             const Divider(),
+//             Padding(
+//               padding: const EdgeInsets.symmetric(vertical: 20.0),
+//               child: Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   const Text(
+//                     "Total:",
+//                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                   ),
+//                   Text(
+//                     '\$${total.toStringAsFixed(2)}',
+//                     style: const TextStyle(
+//                         fontSize: 18, fontWeight: FontWeight.bold),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             // Confirm Order Button
+//             Center(
+//               child: ElevatedButton(
+//                 style: ElevatedButton.styleFrom(
+//                     backgroundColor: Colors.green,
+//                     minimumSize: const Size(200, 50)),
+//                 onPressed: () {
+//                   showDialog(
+//                     context: context,
+//                     builder: (context) => AlertDialog(
+//                       title: const Text("Order Confirmed"),
+//                       content: const Text("Your order has been placed."),
+//                       actions: <Widget>[
+//                         TextButton(
+//                           onPressed: () {
+//                             Navigator.pop(context); // Close the dialog
+//                             Navigator.pop(context); // Go back to the menu screen
+//                           },
+//                           child: const Text("OK"),
+//                         ),
+//                       ],
+//                     ),
+//                   );
+//                 },
+//                 child: const Text(
+//                   "Confirm Order",
+//                   style: TextStyle(color: Colors.white, fontSize: 20),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
