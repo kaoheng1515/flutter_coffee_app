@@ -32,10 +32,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     double totalPrice = basePrice * quantity;
 
     return Scaffold(
+      // route to bottom nav bar
+      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
       backgroundColor: Colors.green.shade50,
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text('Detail'),
+        title: const Text('Detail', style: TextStyle(color: Colors.white),),
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
