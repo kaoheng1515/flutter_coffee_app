@@ -19,18 +19,13 @@ class _HomePageState extends State<HomePageScreen> {
 
   final List<Map<String, dynamic>> products = [
     {
-      'title': 'Cappuccino',
-      'image': 'assets/images/cappuccino_classic.jpg', // Local path
+      'title': 'Cappuccino Classic',
+      'image': 'assets/images/boy.png', // Local image path
       'price': 3.00,
-      'rating': 4.8,
-      'description': 'A cappuccino is a classic Italian coffee drink...',
-      'reviews': 230,
-      'sizeSPrice': 2.0,
-      'sizeMPrice': 2.5,
-      'sizeLPrice': 3.0,
+      'rating': 5,
     },
     {
-      'title': 'Cappuccino 11',
+      'title': 'Cappuccino Hot',
       'image': 'assets/images/boy.png', // Local image path
       'price': 3.00,
       'rating': 4.8,
@@ -55,6 +50,25 @@ class _HomePageState extends State<HomePageScreen> {
       'price': 4.50,
       'rating': 4.9,
     },
+    {
+      'title': 'Caramel Macchiato',
+      'image': 'https://via.placeholder.com/150',
+      'price': 4.50,
+      'rating': 4.9,
+    },
+    {
+      'title': 'Iced Macchiato',
+      'image': 'https://via.placeholder.com/150',
+      'price': 4.50,
+      'rating': 4.9,
+    },
+    {
+      'title': 'Cloud Macchiato',
+      'image': 'https://via.placeholder.com/150',
+      'price': 4.50,
+      'rating': 4.9,
+    },
+
   ];
 
   String selectedCategory = 'Cappuccino';
