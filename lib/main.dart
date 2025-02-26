@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_app/screen/favorite_screen.dart';
+import 'package:flutter_coffee_app/screen/menu_screen.dart';
+import 'package:flutter_coffee_app/screen/profile_screen.dart';
 import 'package:flutter_coffee_app/screen/welcome_screen.dart';
 import 'package:flutter_coffee_app/screen/login_screen.dart';
 import 'package:flutter_coffee_app/screen/register_screen.dart';
@@ -37,6 +40,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePageScreen(),
         '/product_detail': (context) => ProductDetailScreen(),
         '/payment': (context) => Payment(),
+        '/menu': (context)  => MenuScreen(),
+        '/favorite': (context)  => FavoriteScreen(),
+        '/profile': (context) =>  ProfileScreen(),
       },
     );
   }

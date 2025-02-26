@@ -57,6 +57,20 @@ class BottomNavBar extends StatelessWidget {
         ],
         onTap: (index) {
           // Handle navigation logic
+          switch (index) {
+            case 0:
+              Navigator.pushReplacementNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.pushReplacementNamed(context, '/menu');
+              break;
+            case 2:
+              Navigator.pushReplacementNamed(context, '/favorite');
+              break;
+            case 3:
+              Navigator.pushReplacementNamed(context, '/profile');
+              break;
+          }
         },
       ),
     );
