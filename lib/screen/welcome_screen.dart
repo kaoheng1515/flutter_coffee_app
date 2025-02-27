@@ -4,7 +4,6 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.green,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -15,24 +14,21 @@ class WelcomeScreen extends StatelessWidget {
           ),
         ),
         child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(height: 500),
             Container(
-              width: double.infinity, // Specify width for the container
-              height: 410, // Specify height for the container
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.all(80),
               decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.95),
-
+                color: Colors.green.withOpacity(0.8),
+                // borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Get your new Coffee experience at',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                   Text(
@@ -49,18 +45,8 @@ class WelcomeScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
-                      // Handle login
                     },
-                    style: ElevatedButton.styleFrom(
-                      // Text color
-                      padding: EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 80.0), // Padding
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0), // Rounded corners
-                      ),
-                      elevation: 5, // Shadow elevation
-                    ),
-                    child: Text('Get Start'),
+                    child: Text('Get Started', style: TextStyle(fontSize: 20)),
                   ),
                 ],
               ),

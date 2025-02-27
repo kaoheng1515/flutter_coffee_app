@@ -141,7 +141,7 @@ class RegisterScreen extends StatelessWidget {
                 // Handle registration
               },
               child: Text('Already have an account'),
-            )
+            ),
           ],
         ),
       ),
