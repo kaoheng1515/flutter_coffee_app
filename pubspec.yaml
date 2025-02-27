@@ -71,6 +71,9 @@ flutter:
     - assets/images/orange_juice.png
     - assets/images/Strawberry_frap_small.png
     - assets/images/Ice_cream.png
+    - assets/images/green_banner.png
+    - assets/images/vanilla-cappuccino.png
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
