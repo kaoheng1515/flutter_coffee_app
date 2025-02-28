@@ -1,6 +1,8 @@
-# flutter_coffee_app
+# Flutter Coffee App
 
-this project for mobile coffee app
+A simple multiplatform application. Developed using Flutter, this app offers a seamless and visually appealing coffee shopping experience on both iOS and Android devices.
+
+This project is not completed yet, as soon as possible when it's complete I will update it here. Stay tuned for more exciting updates!
 
 ## Getting Started
 
@@ -14,3 +16,26 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+# Features
+ Coffee menu
+ Infinite scrolling
+ Reviews and ratings
+ Order customization
+ Introductory screens
+ Custom search bar
+ Custom Bottom navigation bar
+and much more... Check it yourself :)
+
+# Screenshots
+Coming Soon...
+# Desgin
+Figma
+# Building From Source
+1. If you don't have Flutter SDK installed, please visit official Flutter site.
+2. Fetch latest source code from master branch.
+   https://github.com/kaoheng1515/flutter_coffee_app.git
+3. Run the app with Android Studio or VS Code. Or the command line:
+   flutter pub get
+   flutter run
+
