@@ -48,6 +48,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePageScreen> {
+  final TextEditingController _searchController = TextEditingController();
   final List<Category> categories = [
     Category(name: 'Cappuccino', products: [
       Product(
@@ -106,13 +107,26 @@ class _HomePageState extends State<HomePageScreen> {
   ];
 
   String selectedCategory = 'All'; // Default category is "All"
+  String searchQuery = ''; // Store the search query
+
+  // Function to filter products based on search query
+  List<Product> getFilteredProducts() {
+    final allProducts = selectedCategory == 'All'
+        ? categories.expand((category) => category.products).toList()
+        : categories.firstWhere((category) => category.name == selectedCategory).products;
+
+    if (searchQuery.isEmpty) {
+      return allProducts;
+    } else {
+      return allProducts.where((product) {
+        return product.title.toLowerCase().contains(searchQuery.toLowerCase());
+      }).toList();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    // If selected category is "All", show all products
-    final selectedProducts = selectedCategory == 'All'
-        ? categories.expand((category) => category.products).toList()
-        : categories.firstWhere((category) => category.name == selectedCategory).products;
+    final filteredProducts = getFilteredProducts();
 
     return Scaffold(
       appBar: AppBar(
@@ -138,6 +152,12 @@ class _HomePageState extends State<HomePageScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _searchController,
+              onChanged: (query) {
+                setState(() {
+                  searchQuery = query; // Update the search query
+                });
+              },
               decoration: InputDecoration(
                 hintText: "Search Coffee",
                 prefixIcon: const Icon(Icons.search),
@@ -224,7 +244,7 @@ class _HomePageState extends State<HomePageScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: GridView.builder(
-                itemCount: selectedProducts.length,
+                itemCount: filteredProducts.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisExtent: 220,
@@ -232,7 +252,7 @@ class _HomePageState extends State<HomePageScreen> {
                   mainAxisSpacing: 16,
                 ),
                 itemBuilder: (context, index) {
-                  final product = selectedProducts[index];
+                  final product = filteredProducts[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, '/product_detail');
