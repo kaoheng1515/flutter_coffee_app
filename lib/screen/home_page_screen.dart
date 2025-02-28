@@ -55,9 +55,7 @@ class _HomePageState extends State<HomePageScreen> {
         price: 3.00,
         rating: 4.8,
         images: [
-          ImageProduct(
-              url: 'assets/images/cappuccino.png',
-              altText: 'Cappuccino Classic'),
+          ImageProduct(url: 'assets/images/cappuccino.png', altText: 'Cappuccino Classic'),
         ],
       ),
       Product(
@@ -65,9 +63,7 @@ class _HomePageState extends State<HomePageScreen> {
         price: 3.50,
         rating: 4.7,
         images: [
-          ImageProduct(
-              url: 'assets/images/vanilla-cappuccino.png',
-              altText: 'Cappuccino Vanilla'),
+          ImageProduct(url: 'assets/images/vanilla-cappuccino.png', altText: 'Cappuccino Vanilla'),
         ],
       ),
     ]),
@@ -77,8 +73,7 @@ class _HomePageState extends State<HomePageScreen> {
         price: 4.50,
         rating: 4.9,
         images: [
-          ImageProduct(
-              url: 'assets/images/latte_art.png', altText: 'Latte Art'),
+          ImageProduct(url: 'assets/images/latte_art.jpeg', altText: 'Latte Art'),
         ],
       ),
       Product(
@@ -86,8 +81,7 @@ class _HomePageState extends State<HomePageScreen> {
         price: 4.80,
         rating: 4.6,
         images: [
-          ImageProduct(
-              url: 'assets/images/caramel_latte.jpg', altText: 'Caramel Latte'),
+          ImageProduct(url: 'assets/images/latte_caramel.jpeg', altText: 'Caramel Latte'),
         ],
       ),
     ]),
@@ -97,9 +91,7 @@ class _HomePageState extends State<HomePageScreen> {
         price: 2.50,
         rating: 4.5,
         images: [
-          ImageProduct(
-              url: 'assets/images/espresso_single.jpg',
-              altText: 'Single Espresso'),
+          ImageProduct(url: 'assets/images/caramel_frap.png', altText: 'Single Espresso'),
         ],
       ),
       Product(
@@ -107,29 +99,27 @@ class _HomePageState extends State<HomePageScreen> {
         price: 3.00,
         rating: 4.7,
         images: [
-          ImageProduct(
-              url: 'assets/images/espresso_double.jpg',
-              altText: 'Double Espresso'),
+          ImageProduct(url: 'assets/images/Green Tea Frappe.png', altText: 'Double Espresso'),
         ],
       ),
     ]),
   ];
 
-  String selectedCategory = 'Cappuccino';
+  String selectedCategory = 'All'; // Default category is "All"
 
   @override
   Widget build(BuildContext context) {
-    final selectedProducts = categories
-        .firstWhere((category) => category.name == selectedCategory)
-        .products;
+    // If selected category is "All", show all products
+    final selectedProducts = selectedCategory == 'All'
+        ? categories.expand((category) => category.products).toList()
+        : categories.firstWhere((category) => category.name == selectedCategory).products;
 
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Coffee App',
-          style: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.green,
         actions: [
@@ -161,115 +151,44 @@ class _HomePageState extends State<HomePageScreen> {
             ),
           ),
 
-          // Banner Section
+          // Banner Section (Fixed)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 5),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 5,
-                        spreadRadius: 2,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: AspectRatio(
-                      aspectRatio:
-                      16 / 7, // Maintains a clean ratio for the banner
-                      child: Image.asset(
-                        'assets/images/green_banner.png', // Ensure the banner image is in assets
-                        fit: BoxFit.cover,
-                      ),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                width: double.infinity,
+                height: 160,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0),
+                      blurRadius: 0,
+                      spreadRadius: 0,
+                      offset: Offset(0, 4),
                     ),
-                  ),
+                  ],
                 ),
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.green.shade700,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      'Free Delivery',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                      ),
-                    ),
-                  ),
+                child: Image.asset(
+                  'assets/images/banner_free.png',
+                  fit: BoxFit.cover,
                 ),
-                Positioned(
-                  top:
-                  50, // Adjusts the position below the "Free Delivery" label
-                  left: 10,
-                  child: Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Text(
-                      'For your first order',
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontSize: 12,
-                        fontWeight: FontWeight
-                            .bold, // Smaller font size for the tagline
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 90, // Position the "Call Now" button below the tagline
-                  left: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Action for the "Call Now" button (can open phone dialer or another action)
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // Button color
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    child: const Text(
-                      'Call Now',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
 
+          const SizedBox(height: 20),
           // Category Selector
           SizedBox(
             height: 40,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: categories.length,
+              itemCount: categories.length + 1,
               separatorBuilder: (context, index) => const SizedBox(width: 8.0),
               itemBuilder: (context, index) {
-                final category = categories[index].name;
+                final category = index == 0 ? 'All' : categories[index - 1].name;
                 final isSelected = category == selectedCategory;
                 return GestureDetector(
                   onTap: () {
@@ -278,8 +197,7 @@ class _HomePageState extends State<HomePageScreen> {
                     });
                   },
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                     decoration: BoxDecoration(
                       color: isSelected ? Colors.green : Colors.green.shade50,
                       borderRadius: BorderRadius.circular(20),
@@ -289,8 +207,7 @@ class _HomePageState extends State<HomePageScreen> {
                         category,
                         style: TextStyle(
                           color: isSelected ? Colors.white : Colors.green,
-                          fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
                       ),
                     ),
@@ -328,98 +245,62 @@ class _HomePageState extends State<HomePageScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Image with rating overlay
                           Stack(
                             children: [
                               ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                    top: Radius.circular(12)),
+                                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
                                 child: Image.asset(
                                   product.images[0].url,
                                   width: double.infinity,
-                                  height: 120, // Adjust the height as needed
+                                  height: 120,
                                   fit: BoxFit.cover,
                                 ),
                               ),
                               Positioned(
                                 top: 8,
-                                left: 8,
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 4),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        size: 16,
-                                        color: Colors.yellow,
-                                      ),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        product.rating.toString(),
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                right: 8,
+                                child: Row(
+                                  children: List.generate(5, (starIndex) {
+                                    return Icon(
+                                      starIndex < product.rating
+                                          ? Icons.star
+                                          : Icons.star_border,
+                                      color: Colors.yellow,
+                                      size: 16,
+                                    );
+                                  }),
                                 ),
                               ),
                             ],
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              product.title,
-                              style:
-                              const TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                            child: Text(product.title, style: const TextStyle(fontWeight: FontWeight.bold)),
                           ),
                           Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(
                               children: [
-                                Text(
-                                  '\$${product.price.toString()}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Text('\$${product.price.toString()}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                                const Spacer(),
+                                IconButton(
+                                  icon: const Icon(Icons.remove, color: Colors.green),
+                                  onPressed: () {
+                                    setState(() {
+                                      if (product.quantity > 1) {
+                                        product.quantity--;
+                                      }
+                                    });
+                                  },
                                 ),
-                                const SizedBox(width: 10),
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.remove),
-                                      onPressed: () {
-                                        setState(() {
-                                          if (product.quantity > 1) {
-                                            product.quantity--;
-                                          }
-                                        });
-                                      },
-                                    ),
-                                    Text(
-                                      '${product.quantity}',
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.add),
-                                      onPressed: () {
-                                        setState(() {
-                                          product.quantity++;
-                                        });
-                                      },
-                                    ),
-                                  ],
+                                Text('${product.quantity}', style: const TextStyle(fontSize: 16)),
+                                IconButton(
+                                  icon: const Icon(Icons.add, color: Colors.green),
+                                  onPressed: () {
+                                    setState(() {
+                                      product.quantity++;
+                                    });
+                                  },
                                 ),
                               ],
                             ),
