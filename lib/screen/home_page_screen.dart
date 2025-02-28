@@ -86,24 +86,6 @@ class _HomePageState extends State<HomePageScreen> {
         ],
       ),
     ]),
-    Category(name: 'Espresso', products: [
-      Product(
-        title: 'Single Espresso',
-        price: 2.50,
-        rating: 4.5,
-        images: [
-          ImageProduct(url: 'assets/images/caramel_frap.png', altText: 'Single Espresso'),
-        ],
-      ),
-      Product(
-        title: 'Double Espresso',
-        price: 3.00,
-        rating: 4.7,
-        images: [
-          ImageProduct(url: 'assets/images/Green Tea Frappe.png', altText: 'Double Espresso'),
-        ],
-      ),
-    ]),
   ];
 
   String selectedCategory = 'All'; // Default category is "All"
@@ -171,6 +153,7 @@ class _HomePageState extends State<HomePageScreen> {
             ),
           ),
 
+          // banner
           // Banner Section (Fixed)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -197,6 +180,7 @@ class _HomePageState extends State<HomePageScreen> {
               ),
             ),
           ),
+
 
           const SizedBox(height: 20),
           // Category Selector
@@ -265,33 +249,14 @@ class _HomePageState extends State<HomePageScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                                child: Image.asset(
-                                  product.images[0].url,
-                                  width: double.infinity,
-                                  height: 120,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              Positioned(
-                                top: 8,
-                                right: 8,
-                                child: Row(
-                                  children: List.generate(5, (starIndex) {
-                                    return Icon(
-                                      starIndex < product.rating
-                                          ? Icons.star
-                                          : Icons.star_border,
-                                      color: Colors.yellow,
-                                      size: 16,
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ],
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+                            child: Image.asset(
+                              product.images[0].url,
+                              width: double.infinity,
+                              height: 120,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -301,7 +266,10 @@ class _HomePageState extends State<HomePageScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Row(
                               children: [
-                                Text('\$${product.price.toString()}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                                Text(
+                                  '\$${(product.price * product.quantity).toStringAsFixed(2)}',
+                                  style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
                                 const Spacer(),
                                 IconButton(
                                   icon: const Icon(Icons.remove, color: Colors.green),
