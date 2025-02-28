@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Payment extends StatefulWidget {
@@ -9,6 +8,22 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   int type = 1;
   bool isLoading = false;
+  TextEditingController _priceController = TextEditingController();
+  double totalAmount = 20.50;
+  double shippingFee = 0.00;
+  double coffeePrice = 5.00;
+  List<String> coffeeOptions = ["Small - \$2.00", "Medium - \$3.00", "Large - \$4.00"];
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final double? receivedTotalAmount = ModalRoute.of(context)?.settings.arguments as double?;
+    if (receivedTotalAmount != null) {
+      setState(() {
+        totalAmount = receivedTotalAmount;
+      });
+    }
+  }
 
   void handleRadio(Object? e) {
     setState(() {
@@ -32,7 +47,7 @@ class _PaymentState extends State<Payment> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           title: Center(child: Text("🎉 Payment Successful🎉")),
           content: Text(
-            "Your payment of \$20.50 has been processed successfully.",
+            "Your payment of \$${(totalAmount + shippingFee).toStringAsFixed(2)} has been processed successfully.",
             textAlign: TextAlign.center,
           ),
           actions: [
@@ -44,10 +59,28 @@ class _PaymentState extends State<Payment> {
         ),
       );
 
-      // Auto-close the dialog after 3 seconds
       Future.delayed(Duration(seconds: 5), () {
         Navigator.pop(context);
       });
+    });
+  }
+
+  void updateCoffeePrice(String selectedCoffee) {
+    setState(() {
+      if (selectedCoffee == "Small - \$2.00") {
+        coffeePrice = 2.00;
+      } else if (selectedCoffee == "Medium - \$3.00") {
+        coffeePrice = 3.00;
+      } else if (selectedCoffee == "Large - \$4.00") {
+        coffeePrice = 4.00;
+      }
+      totalAmount = coffeePrice + shippingFee;
+    });
+  }
+
+  void updateCustomPrice(String value) {
+    setState(() {
+      totalAmount = double.tryParse(value) ?? coffeePrice + shippingFee;
     });
   }
 
@@ -94,7 +127,6 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-
       appBar: AppBar(
         title: Text("Payment Method"),
         backgroundColor: Colors.transparent,
@@ -103,35 +135,75 @@ class _PaymentState extends State<Payment> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              SizedBox(height: 20),
-              buildPaymentOption(1, "Bitcoin", Icons.currency_bitcoin_outlined),
-              buildPaymentOption(2, "ABA Bank", Icons.comment_bank,),
-              buildPaymentOption(3, "Acleda Bank", Icons.account_balance),
-              buildPaymentOption(4, "Credit Card", Icons.add_card),
-              SizedBox(height: 30),
-              _buildPriceSummary(),
-              SizedBox(height: 30),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: isLoading ? null : confirmPayment,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                buildPaymentOption(1, "Bitcoin", Icons.currency_bitcoin_outlined),
+                buildPaymentOption(2, "ABA Bank", Icons.comment_bank),
+                buildPaymentOption(3, "Acleda Bank", Icons.account_balance),
+                buildPaymentOption(4, "Credit Card", Icons.add_card),
+                SizedBox(height: 10),
+
+                // Coffee Size Selection
+                Text("Choose Your Coffee Size", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                SizedBox(height: 5),
+                DropdownButton<String>(
+                  value: coffeeOptions.firstWhere(
+                        (option) => option.contains("\$${coffeePrice.toString()}"),
+                    orElse: () => coffeeOptions.first,
                   ),
-                  child: isLoading
-                      ? CircularProgressIndicator(color: Colors.white)
-                      : Text("Confirm Payment", style: TextStyle(fontSize: 16, color: Colors.white)),
+                  onChanged: (value) {
+                    if (value != null) {
+                      updateCoffeePrice(value);
+                    }
+                  },
+                  items: coffeeOptions.map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(value: value, child: Text(value));
+                  }).toList(),
                 ),
-              ),
-            ],
+                SizedBox(height: 20),
+
+                // Custom Price Input
+                Container(
+                  height: 60,
+                  child: TextField(
+                    controller: _priceController,
+                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    decoration: InputDecoration(
+                      labelText: 'Enter Custom Price',
+                      hintText: 'Enter custom price',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.attach_money),
+                      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    ),
+                    maxLines: 1,
+                    onChanged: updateCustomPrice,
+                  ),
+                ),
+                SizedBox(height: 30),
+                _buildPriceSummary(),
+                SizedBox(height: 30),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: isLoading ? null : confirmPayment,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: isLoading
+                        ? CircularProgressIndicator(color: Colors.white)
+                        : Text("Confirm Payment", style: TextStyle(fontSize: 16, color: Colors.white)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -141,10 +213,10 @@ class _PaymentState extends State<Payment> {
   Widget _buildPriceSummary() {
     return Column(
       children: [
-        _buildPriceRow("Sub_Total", "\$20.50", Colors.black87),
-        _buildPriceRow("Shipping Fee", "\$0.00", Colors.grey),
+        _buildPriceRow("Sub_Total", "\$${totalAmount.toStringAsFixed(2)}", Colors.redAccent),
+        _buildPriceRow("Shipping Fee", "\$${shippingFee.toStringAsFixed(2)}", Colors.grey),
         Divider(color: Colors.black87),
-        _buildPriceRow("Total Payment", "\$20.50", Colors.red),
+        _buildPriceRow("Total Payment", "\$${(totalAmount + shippingFee).toStringAsFixed(2)}", Colors.green),
       ],
     );
   }
