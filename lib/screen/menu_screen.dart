@@ -181,7 +181,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                     ),
                                     child: const Icon(
                                       Icons.remove,
-                                      color: Colors.black,
+                                      color: Colors.green,
                                     ),
                                   ),
                                 ),
@@ -223,7 +223,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                     ),
                                     child: const Icon(
                                       Icons.add,
-                                      color: Colors.black,
+                                      color: Colors.green,
                                     ),
                                   ),
                                 ),
