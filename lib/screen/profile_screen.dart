@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_app/widgets/bottom_nav_bar.dart';
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfileScreen(),
+    );
+  }
+}
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -9,7 +21,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String selectedLanguage = "English 🇺🇸"; // Default language
+  String selectedLanguage = "English 🇺🇸";
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +59,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profile Card
             Container(
               decoration: BoxDecoration(
                 color: Colors.green,
@@ -107,9 +118,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       ),
-
     );
   }
+
   Widget _buildMenuItem(IconData icon, String title, {VoidCallback? onTap, Color? iconColor}) {
     return ListTile(
       leading: Icon(icon, color: iconColor ?? Colors.black54),
@@ -136,111 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-  void _showSetPasswordDialog() {
-    TextEditingController currentPasswordController = TextEditingController();
-    TextEditingController newPasswordController = TextEditingController();
-    TextEditingController confirmPasswordController = TextEditingController();
-    bool obscureCurrentPassword = true;
-    bool obscureNewPassword = true;
-    bool obscureConfirmPassword = true;
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return StatefulBuilder(builder: (context, setState) {
-          return AlertDialog(
-            title: const Text("Set New Password"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildPasswordField(
-                  controller: currentPasswordController,
-                  label: "Current Password",
-                  obscureText: obscureCurrentPassword,
-                  toggleObscure: () {
-                    setState(() {
-                      obscureCurrentPassword = !obscureCurrentPassword;
-                    });
-                  },
-                ),
-                _buildPasswordField(
-                  controller: newPasswordController,
-                  label: "New Password",
-                  obscureText: obscureNewPassword,
-                  toggleObscure: () {
-                    setState(() {
-                      obscureNewPassword = !obscureNewPassword;
-                    });
-                  },
-                ),
-                _buildPasswordField(
-                  controller: confirmPasswordController,
-                  label: "Confirm New Password",
-                  obscureText: obscureConfirmPassword,
-                  toggleObscure: () {
-                    setState(() {
-                      obscureConfirmPassword = !obscureConfirmPassword;
-                    });
-                  },
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text("Cancel"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (newPasswordController.text.isEmpty ||
-                      confirmPasswordController.text.isEmpty ||
-                      currentPasswordController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("All fields are required!")),
-                    );
-                    return;
-                  }
-                  if (newPasswordController.text != confirmPasswordController.text) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Passwords do not match!")),
-                    );
-                    return;
-                  }
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Password changed successfully!")),
-                  );
-                  Navigator.pop(context);
-                },
-                child: const Text("Save"),
-              ),
-            ],
-          );
-        });
-      },
-    );
-  }
-  Widget _buildPasswordField({
-    required TextEditingController controller,
-    required String label,
-    required bool obscureText,
-    required VoidCallback toggleObscure,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: TextField(
-        controller: controller,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          labelText: label,
-          suffixIcon: IconButton(
-            icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility),
-            onPressed: toggleObscure,
-          ),
-          border: const OutlineInputBorder(),
-        ),
-      ),
-    );
-  }
   void _showLogoutDialog() {
     showDialog(
       context: context,
@@ -249,22 +156,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
           title: const Text("Logout"),
           content: const Text("Are you sure you want to log out?"),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Logged Out Successfully")),
-                );
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: const Text("Logout"),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Cancel"),
+                ),
+                const SizedBox(width: 20), // Spacer between buttons
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Logged Out Successfully")),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+                  child: const Text("Ok", style: TextStyle(color: Colors.white)),
+                ),
+              ],
             ),
           ],
         );
       },
     );
   }
+
   void _navigateTo(String title) {
     if (title == "Payment Methods") {
       Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentMethodsScreen()));
@@ -286,6 +207,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Navigator.push(context, MaterialPageRoute(builder: (context) => FeedbackScreen()));
     }
   }
+
   void _showLanguageDialog() {
     showDialog(
       context: context,
@@ -306,6 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+
   Widget _buildLanguageOption(String language) {
     return ListTile(
       title: Text(language),
@@ -317,7 +240,64 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+
+  void _showSetPasswordDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Set Password"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                obscureText: true,
+                decoration: const InputDecoration(labelText: "Enter new password"),
+              ),
+              TextField(
+                obscureText: true,
+                decoration: const InputDecoration(labelText: "Confirm new password"),
+              ),
+            ],
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Cancel"),
+                ),
+                const SizedBox(width: 20), // Spacer between buttons
+                ElevatedButton(
+                  onPressed: () {
+                    // Implement password change logic here
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Password updated successfully")),
+                    );
+                  },
+                  child: const Text("Save"),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Home")),
+      body: const Center(child: Text("Welcome to the Home Screen")),
+    );
+  }
+}
+
 class PaymentMethodsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
