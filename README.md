@@ -10,26 +10,18 @@ This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
 # Features
- Coffee menu
- Infinite scrolling
- Reviews and ratings
- Order customization
- Introductory screens
- Custom search bar
- Custom Bottom navigation bar
-and much more... Check it yourself :)
+ - Coffee menu
+ - Infinite scrolling
+ - Reviews and ratings
+ - Order customization
+ - Introductory screens
+ - Custom search bar
+ - Custom Bottom navigation bar and much more... Check it yourself :)
 
 # Screenshots
 Coming Soon...
-# Desgin
+# Desgin https://www.figma.com/design/ZX4qlyBmmecsgCawCjYV4d/Coffee_App?node-id=426-2843&p=f&t=uVIdotx0ZWvNZ9Kl-0
 Figma
 # Building From Source
 1. If you don't have Flutter SDK installed, please visit official Flutter site.
