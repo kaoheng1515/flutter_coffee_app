@@ -59,6 +59,26 @@ class _MenuScreenState extends State<MenuScreen> {
     });
   }
 
+  void _showOrderConfirmationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Order Confirmation"),
+          content: const Text("Your order has been placed successfully!"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -167,7 +187,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const Padding(
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 5.0),
+                                  EdgeInsets.symmetric(horizontal: 5.0),
                                 ),
                                 Container(
                                   height: 40,
@@ -190,7 +210,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                 ),
                                 const Padding(
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 5.0),
+                                  EdgeInsets.symmetric(horizontal: 5.0),
                                 ),
                                 GestureDetector(
                                   onTap: () => increment(index),
@@ -218,8 +238,6 @@ class _MenuScreenState extends State<MenuScreen> {
                           decoration: const BoxDecoration(
                             border: Border(
                               top: BorderSide(color: Colors.grey, width: 3.0),
-                              // bottom:
-                              //     BorderSide(color: Colors.grey, width: 2.0),
                             ),
                           ),
                           child: Column(
@@ -268,7 +286,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                     bottom: 10),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       "Delivery Charges",
@@ -326,10 +344,11 @@ class _MenuScreenState extends State<MenuScreen> {
                                           ),
                                         ),
                                         onPressed: () {
+                                          _showOrderConfirmationDialog();
                                         },
-                                        child: Text(
+                                        child: const Text(
                                           "Place Order",
-                                          style: TextStyle(color: Colors.white, fontSize: 20,),
+                                          style: TextStyle(color: Colors.white, fontSize: 20),
                                         ),
                                       ),
                                     ),
@@ -350,6 +369,7 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 }
+
 // class OrderSummaryScreen extends StatelessWidget {
 //   final List<Map<String, dynamic>> menuItems;
 //   final double total;
