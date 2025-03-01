@@ -79,8 +79,7 @@ flutter:
     - assets/images/banner_free.png
     - assets/images/latte_art.jpeg
     - assets/images/latte_caramel.jpeg
-
-
+    - assets/images/img_1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

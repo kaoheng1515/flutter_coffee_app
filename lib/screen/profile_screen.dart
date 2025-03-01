@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   const CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/images/user.png'),
+                    backgroundImage: AssetImage('assets/images/img_1.png'),
                   ),
                   const SizedBox(width: 12),
                   Column(
@@ -153,7 +153,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Logout"),
+          title: const Text(
+            "Logout",
+            textAlign: TextAlign.center,
+          ),
           content: const Text("Are you sure you want to log out?"),
           actions: [
             Row(
@@ -163,7 +166,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onPressed: () => Navigator.pop(context),
                   child: const Text("Cancel"),
                 ),
-                const SizedBox(width: 20), // Spacer between buttons
+                const SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -171,9 +174,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       context,
                       MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Logged Out Successfully")),
-                    );
+                    Future.delayed(const Duration(milliseconds: 100), () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Logged Out Successfully")),
+                      );
+                    });
                   },
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
                   child: const Text("Ok", style: TextStyle(color: Colors.white)),
@@ -185,6 +190,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+
+
 
   void _navigateTo(String title) {
     if (title == "Payment Methods") {
@@ -246,17 +253,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Set Password"),
+          title: const Text("Set Password",textAlign: TextAlign.center),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 obscureText: true,
-                decoration: const InputDecoration(labelText: "Enter new password"),
+                decoration: InputDecoration(
+                  labelText: "Enter new password",
+                  suffixIcon: Icon(Icons.visibility_off),
+                ),
               ),
               TextField(
                 obscureText: true,
-                decoration: const InputDecoration(labelText: "Confirm new password"),
+                decoration: InputDecoration(
+                  labelText: "Confirm new password",
+                  suffixIcon: Icon(Icons.visibility_off),
+                ),
               ),
             ],
           ),

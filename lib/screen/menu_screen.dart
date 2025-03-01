@@ -71,7 +71,7 @@ class _MenuScreenState extends State<MenuScreen> {
               onPressed: () {
                 Navigator.pop(context); // Close the dialog
               },
-              child: const Text("OK"),
+              child: const Text("OK",style: TextStyle(color: Colors.green),),
             ),
           ],
         );
@@ -317,7 +317,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                         Text(
                                           "Grand Total",
                                           style: TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.green,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -325,7 +325,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                         Text(
                                           "\$10.00",
                                           style: TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.green,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
                                           ),
