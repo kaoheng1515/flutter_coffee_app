@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_app/screen/bottom_navigation_bar_app.dart';
 import 'package:flutter_coffee_app/screen/favorite_screen.dart';
 import 'package:flutter_coffee_app/screen/menu_screen.dart';
 import 'package:flutter_coffee_app/screen/profile_screen.dart';
@@ -16,16 +17,6 @@ void main() {
   runApp(MyApp());
 }
 
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Coffee App',
-//       home: Payment(), // Ensure Payment() is a valid widget
-//     );
-//   }
-// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -38,7 +29,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => WelcomeScreen(),
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
-        '/home': (context) => HomePageScreen(),
+        '/home': (context) => BottomNavigationBarApp(),
         '/product_detail': (context) => ProductDetailScreen(),
         '/payment': (context) => Payment(),
         '/menu': (context)  => MenuScreen(),

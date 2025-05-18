@@ -18,7 +18,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavBar(currentIndex: 0),
+      // bottomNavigationBar: BottomNavBar(currentIndex: 0),
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(

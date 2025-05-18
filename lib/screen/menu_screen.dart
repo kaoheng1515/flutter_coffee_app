@@ -334,8 +334,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                     ),
                                     const SizedBox(height: 30,),
                                     SizedBox(
-                                      height: 55,
-                                      width: 200,
+                                      height: 50,
+                                      width: 180,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.green,

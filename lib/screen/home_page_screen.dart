@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePageScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      // bottomNavigationBar:  BottomNavBar(currentIndex: 0),
       body: Column(
         children: [
           // Search Bar

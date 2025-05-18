@@ -33,7 +33,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
     return Scaffold(
       // route to bottom nav bar
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      bottomNavigationBar:  BottomNavBar(currentIndex: 0),
       backgroundColor: Colors.green.shade50,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
