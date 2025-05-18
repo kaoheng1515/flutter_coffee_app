@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_app/screen/login_screen.dart';
 import 'package:flutter_coffee_app/widgets/bottom_nav_bar.dart';
 
 void main() => runApp(MyApp());
@@ -84,7 +85,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const Text(
-                        "Customer since Dec, 2024",
+                        "Customer since May, 2025",
                         style: TextStyle(color: Colors.white70),
                       ),
                       const SizedBox(height: 5),
@@ -172,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.pop(context);
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                     Future.delayed(const Duration(milliseconds: 100), () {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -300,16 +301,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Home")),
-      body: const Center(child: Text("Welcome to the Home Screen")),
-    );
-  }
-}
+// No need
+//
+// class HomeScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: const Text("Home")),
+//       body: const Center(child: Text("Welcome to the Home Screen")),
+//     );
+//   }
+// }
 
 class PaymentMethodsScreen extends StatelessWidget {
   @override

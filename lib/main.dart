@@ -8,9 +8,6 @@ import 'package:flutter_coffee_app/screen/login_screen.dart';
 import 'package:flutter_coffee_app/screen/register_screen.dart';
 import 'package:flutter_coffee_app/screen/home_page_screen.dart';
 import 'package:flutter_coffee_app/screen/product_detial_screen.dart';
-
-
-
 import 'payment_screen/payment.dart';
 
 void main() {
@@ -35,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/menu': (context)  => MenuScreen(),
         '/favorite': (context)  => FavoriteScreen(),
         '/profile': (context) =>  ProfileScreen(),
+        '/logout': (context) => LoginScreen(),
       },
     );
   }
